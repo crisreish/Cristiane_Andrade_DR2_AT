@@ -1,0 +1,84 @@
+﻿@model Aniversarios.Models.PessoaViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h3>Gerenciamento de Aniversários</h3>
+
+<h4>Aniversariantes do dia: @DateTime.Today.ToString("dd/MM/yyyy")</h4>
+<h5>
+    <table class="list">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (item.DiasFaltantes == 0)
+                    {
+                        <td>
+                            -
+                            @Html.DisplayFor(modelItem => item.NomeCompleto)
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</h5>
+<br />
+<br />
+
+<h3>Cadastro de Pessoas</h3>
+
+<p>
+    <a asp-action="Incluir">Incluir</a>
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Encontrar pessoa: @Html.TextBox("nomePesquisa")
+        <input type="submit" value="Pesquisar" />
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProximoAniversario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiasFaltantes)
+            </th>
+            <th>Açoes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProximoAniversario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiasFaltantes)
+                </td>
+                <td>
+                    <a asp-action="Alterar" asp-route-id="@item.PessoaId">Alterar</a> |
+                    <a asp-action="Exibir" asp-route-id="@item.PessoaId">Exibir</a> |
+                    <a asp-action="Excluir" asp-route-id="@item.PessoaId">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

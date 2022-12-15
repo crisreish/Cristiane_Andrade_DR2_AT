@@ -1,0 +1,43 @@
+﻿@model Aniversarios.Models.PessoaViewModel
+
+@{
+    ViewData["Title"] = "Exibir";
+}
+
+<h1>Exibir Pessoa</h1>
+
+<div>
+    <h4>Pessoa (Contato)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NomeCompleto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NomeCompleto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProximoAniversario)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProximoAniversario)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiasFaltantes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiasFaltantes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <br />
+    <a asp-action="Alterar" asp-route-id="@Model?.PessoaId">Alterar</a> |
+    <a asp-action="Index">Voltar para a lista original.</a>
+</div>
